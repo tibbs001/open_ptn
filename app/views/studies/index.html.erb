@@ -1,25 +1,50 @@
-<p id="notice"><%= notice %></p>
+<%=  stylesheet_link_tag "studies/studies" %>
+<div class="wrap">
+  <p id="notice"><%= notice %></p>
 
-<h1>Listing Studies</h1>
+  <div class="studyInfo">
+    <h1 id='galleryHeading'>PTN Studies with Datasets</h1>
+    <section class="studyInfo">
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <table id='studyInfoTable' class='table dataTable data-table table-striped table-condensed table-hover'>
 
-  <tbody>
-    <% @studies.each do |study| %>
-      <tr>
-        <td><%= link_to 'Show', study %></td>
-        <td><%= link_to 'Edit', edit_study_path(study) %></td>
-        <td><%= link_to 'Destroy', study, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+       <tbody class='studies'>
+        <% @studies.each do |study| %>
+          <tr class='studies'>
+            <!-- <td>
+              <a target='_blank' href='<%= study.id %>'>
+                <% if study.image? %>
+                  <%= image_tag study.image_url(:thumb) %>
+                <% end %>
+              </a>
+            </td>  -->
+            <td class='study'>
+              <a href='/studies/<%= study.id %>' class='study'>
+                <h4><%= study.title %></h4>
+                <p><%= study.brief_summary %></p>
+               <% if !study.submitter_name.blank? %>
+                  <p><i>Provided by <%= study.submitter_name %></i></p>
+                  <p><%= study.contact_info %></i></p>
+                <% end %>
+              </a>
+              <% if !study.url.blank? %>
+                <p><a href="<%= study.linkable_url %>" target="_blank" ><%= study.url %></a></p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+       </tbody>
+     </table>
+    </section>
+  </div>
 
-<br>
+  <div class="basicHero">
 
-<%= link_to 'New Study', new_study_path %>
+      <p class='invitation'>
+        <%= button_to "I'd like add a data set to the repository", new_study_path, :id => "addStudyButton",
+       :class => "inbox-sf-add-btn tip", :method => :get %>
+      </p>
+
+  </div>
+
+</div>

@@ -1,10 +1,11 @@
 class StudiesController < ApplicationController
   before_action :set_study, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user, only: [:edit, :destroy]
 
   # GET /studies
   # GET /studies.json
   def index
-    @studies = Study.all
+   @studies = Study.where(status: 'public')
   end
 
   # GET /studies/1
@@ -70,5 +71,18 @@ class StudiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def study_params
       params.fetch(:study, {})
+      params.require(:study).permit(:utf8, :authenticity_token, :commit, :_method, :id, :title, :detailed_description, :url, :contact_info, :status, :brief_summary, :submitter_name, :email, :file, :image_file, :remote_image_url,:pwd)
+    end
+
+    def authenticate_user
+      if !params[:pwd] and !params['study']
+        render plain: "First  Only editable by authorized folks."
+      end
+      if params[:pwd] and params[:pwd] != ENV["PTN_PASSWORD"]
+        render plain: "Second   Only editable by authorized folks."
+      end
+      if params['study'] and (!params['study']['pwd'] or params['study']['pwd'] != ENV["PTN_PASSWORD"])
+        render plain: "Third   Only editable by authorized folks."
+      end
     end
 end

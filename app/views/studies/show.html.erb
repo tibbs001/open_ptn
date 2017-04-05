@@ -1,4 +1,60 @@
+<%=  stylesheet_link_tag 'studies/studies' %>
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_study_path(@study) %> |
-<%= link_to 'Back', studies_path %>
+<div class="wrap">
+
+  <% if @study.status != 'public' %>
+    <section class='studyInfo'>
+      <div class='well'>
+        <h5>The information you provide will appear in the PTN Repository once it has been reviewed by DCRI faculty. You will be contacted via email to verify the content and confirm the information.</h5>
+      </div>
+    </section>
+  <% end %>
+
+  <br>
+
+  <section class='studyInfo'>
+    <p>
+    <div class='studyInfo'>
+      <% if @study.image %>
+        <p class='headingImage' align="middle">
+          <a href='<%= @study.image %>' target='_blank' >
+            <%= image_tag @study.image_url(:medium) %>
+          </a>
+        </p>
+      <% end %>
+      <p class='headingText'><%= @study.title %></p>
+    </div>
+    </p>
+
+    <% if !@study.brief_summary.blank? %>
+      <p><span class='studyInfoLabel'>Summary:</span> <%= @study.brief_summary %></p>
+    <% end %>
+
+    <% if !@study.detailed_description.blank? %>
+      <p><span class='studyInfoLabel'>Details:</span> <%= @study.detailed_description %></p>
+    <% end %>
+
+    <p><%= @study.submitter_name %></p>
+    <p><%= @study.contact_info %></p>
+
+    <% if @study.url %>
+      <p><a href="<%= @study.linkable_url %>" target="_blank" ><%= @study.url %></a></p>
+    <% end %>
+
+    <% if !@study.attachment.nil? %>
+      <p><span class='studyInfoLabel'>Dataset:</span>&nbsp;&nbsp;
+        <a href='/use_case_attachments/<%= @study.attachment.id %>'>
+          <%= @study.attachment.file_name %>
+        </a>
+      </p>
+    <% end %>
+
+    <p><span class='studyInfoLabel'>Submitted:</span> <%= @study.created_at.strftime('%Y-%m-%d %T') %></p>
+  </section>
+
+  <div style="margin:30px;">
+    <p><%= link_to 'Return to List of PTN Studies', studies_path %></p>
+  </div>
+
+</div>

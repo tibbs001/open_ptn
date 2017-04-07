@@ -4,6 +4,12 @@
 @import "buttons";
 @import "forms";
 
+.footerone {
+  float: left;
+  color: #fff;
+  font-size: .8em
+}
+
 * {
   @include border-box;
 }

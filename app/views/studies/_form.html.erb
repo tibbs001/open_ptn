@@ -13,15 +13,15 @@
     </div>
   <% end %>
 
-  <div class="well form-group">
+  <div class="form-group">
     <p>* Title
     <%= f.text_field :title, autofocus: true, :minlength=> 4, class: "enter-info form-control", placeholder: 'study title (with acronym)', :required => true %>
     </p>
   </div>
 
-  <div class="well form-group">
-    <p>* Title
-    <%= f.text_field :nct_id, autofocus: true, :minlength=> 9, class: "enter-info form-control", placeholder: 'ClinicalTrials.gov NCT ID', :required => true %>
+  <div class="form-group">
+    <p>* NCT ID
+    <%= f.text_field :nct_id, :minlength=> 9, :maxlength=> 16, class: 'enter-info form-control', placeholder: 'ClinicalTrials.gov ID', :required => true %>
     </p>
   </div>
 

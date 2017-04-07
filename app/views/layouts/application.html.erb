@@ -13,15 +13,13 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class='page-template-default page page-id-556 page-parent group-blog'>
   <header id='masthead' class="site-header" role='banner'>
     <%= render 'includes/main_header' %>
   </header>
 
-  <div class='standardLayout'>
     <%= render "flashes" -%>
     <%= yield %>
-  </div>
 
   <footer>
     <%= render 'includes/main_footer' %>

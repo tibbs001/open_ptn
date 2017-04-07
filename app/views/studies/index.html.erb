@@ -1,28 +1,26 @@
-<%=  stylesheet_link_tag "studies/studies" %>
-<div class="wrap">
-  <p id="notice"><%= notice %></p>
-  <div class="basicHero">
-      <h1 class='site-title'>Data Sharing</h1>
-      <p class='dataSharing'>
-      <p>To help expand the knowledge base for pediatric medicine, the PTN is pleased to share trial documents and data from its completed and published studies with interested investigators.  Our gaol is to be as transparent as possible with our research for the benefit of children.
-      </p>
-       <ul class='dataSharing'>
-         <li class='dataSharing'>Data sharing policy</li>
-         <li class='dataSharing'>Data sharing request form</li>
-         <li class='dataSharing'>More information on data sharing from the Data Across Sectors for Health (DASH) collaboration</li>
-       </ul>
-      <p class='useCaseInvitation'>We encourage everyone to share their work and discoveries with the community so that everyone can benefit.</p>
-  </div>
+<div id='primary' class='content-area'> == $0
+  <main id='main' class='site-main' role='main'>
+  <div class='centercol'>
+    <header class='entry-header'>
+       <h1>Data Sharing</h1>
+    </header>
+    <div class='entry-content'>
+      <p>To help expand the knowledge base for pediatric medicine, the PTN is pleased to share trial documents and data from its completed and published studies with interested investigators.  Our gaol is to be as transparent as possible with our research for the benefit of children.</p>
+      <ul>
+         <li>Data sharing policy</li>
+         <li>Data sharing request form</li>
+         <li>More information on data sharing from the Data Across Sectors for Health (DASH) collaboration</li>
+      </ul>
+    </div>
 
-  <div class="studyInfo">
-    <h2>Currently available studies</h2>
+    <h3>Currently available studies:</h3>
     <section class="studyInfo">
 
       <table id='studyInfoTable' class='table dataTable data-table table-striped table-condensed table-hover'>
 
-       <tbody class='studies'>
+       <tbody>
         <% @studies.each do |study| %>
-          <tr class='studies'>
+          <tr>
             <!-- <td>
               <a target='_blank' href='<%= study.id %>'>
                 <% if study.image? %>
@@ -30,7 +28,7 @@
                 <% end %>
               </a>
             </td>  -->
-            <td class='study'>
+            <td>
               <a href='/studies/<%= study.id %>' class='study'>
                 <h4><%= study.title %></h4>
                 <p><%= study.brief_summary %></p>
@@ -49,4 +47,5 @@
      </table>
     </section>
   </div>
+  </main>
 </div>
